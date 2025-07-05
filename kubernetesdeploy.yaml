@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bankapp-eta-deploy
+  labels:
+    app: bankapp-eta-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bankapp-eta-app
+  template:
+    metadata:
+      labels:
+        app: bankapp-eta-app
+    spec:
+      containers:
+      - name: bankapp-eta-container
+        image: mausnulla/ins-eta-app
+        ports:
+        - containerPort: 8081   # ✅ Match the exposed port in the Docker image
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bankapp-eta-np-service
+  labels:
+    app: bankapp-eta-app
+spec:
+  selector:
+    app: bankapp-eta-app
+  type: NodePort
+  ports:
+  - nodePort: 31032           # This is the exposed port on the Node (external)
+    port: 8081                # ✅ Port the service will expose internally
+    targetPort: 8081          # ✅ Match containerPort inside pod
