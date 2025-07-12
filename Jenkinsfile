@@ -53,7 +53,7 @@ ${BUILD_URL}''',
         sh "${dockerCMD} build -t mausnulla/insure-me:${tagName} ."
     }
 
-    stage('Push to DockerHub') {
+    stage('Push to my DockerHub') {
         echo 'Pushing the Docker image to DockerHub...'
         withCredentials([usernamePassword(credentialsId: 'docker_login', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh "${dockerCMD} login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
