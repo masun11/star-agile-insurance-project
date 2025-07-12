@@ -5,7 +5,6 @@ node('slave1') {
     def docker
     def dockerCMD
     def tagName
-
     
     stage('Prepare Environment') {
         echo 'Initializing all the variables...'
