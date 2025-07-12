@@ -55,7 +55,7 @@ ${BUILD_URL}''',
 
     stage('Push to my DockerHub') {
         echo 'Pushing the Docker image to DockerHub...'
-        withCredentials([usernamePassword(credentialsId: 'docker_login', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub_login', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh "${dockerCMD} login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
             sh "${dockerCMD} push ${DOCKER_USER}/insure-me:${tagName}"
         }
