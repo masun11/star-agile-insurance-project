@@ -6,6 +6,7 @@ node('slave1') {
     def dockerCMD
     def tagName
 
+    
     stage('Prepare Environment') {
         echo 'Initializing all the variables...'
         mavenHome = tool name: 'maven', type: 'maven'
