@@ -70,5 +70,4 @@ ${BUILD_URL}''',
             inventory: '/etc/ansible/hosts', 
             playbook: 'ansible-playbook.yml'
     }
-
 }
